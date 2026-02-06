@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini React Demo</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+    #root {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    h1 { color: #333; }
+    .count { font-size: 48px; font-weight: bold; margin: 20px 0; color: #007bff; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="./mini-react.js"></script>
+  <script>
+    /** @jsx MiniReact.createElement */
+    const container = document.getElementById("root");
+
+    function Counter() {
+      const [state, setState] = MiniReact.useState(1);
+      
+      return MiniReact.createElement(
+        "div",
+        null,
+        MiniReact.createElement("h1", null, "Mini React 计数器"),
+        MiniReact.createElement("div", { className: "count" }, state),
+        MiniReact.createElement(
+          "button",
+          { onClick: () => setState(s => s + 1) },
+          "点我增加"
+        )
+      );
+    }
+
+    MiniReact.render(MiniReact.createElement(Counter, null), container);
+  </script>
+</body>
+</html>
